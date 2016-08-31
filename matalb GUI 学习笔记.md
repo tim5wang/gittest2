@@ -9,7 +9,7 @@
 
 ### 2 GUI对象操作实例
 
-```m
+```matlab
 %% 创建界面
 h = figure('Units','Normalize',...
     'position',[0.2 0.2 0.5 0.5],...
@@ -36,7 +36,7 @@ end
 - Line
 - Text
 - Uicontrol
-```m
+```matlab
 hf=figure(...
     'Units','Normalized',...
     'Menu','none',...
@@ -80,7 +80,7 @@ hb3=uicontrol(...
 ```
 ### 4 常用对象及属性1
 - figure对象
-```m
+```matlab
 hf=figure;
 get(hf)
 % 改变颜色
@@ -98,7 +98,7 @@ set(hf,'WindowButtonDownFcn','Closereq');
 hb=uicontrol('Style','pushbutton','Callback','closereq');
 ```
 - axes对象
-```m
+```matlab
 ha=axes;
 get(ha)
 set(ha,'NextPlot','add');
@@ -109,7 +109,7 @@ set(ha,'NextPlot','replace');
 
 ### 5.常用对象及属性2
 - line对象
-```m
+```matlab
 hf=figure;
 hl=plot([0:10]);
 get(hl)
@@ -126,7 +126,7 @@ plot(x,y)
 ```
 ### 6.常用对象及属性3
 - text对象
-```m
+```matlab
 ha=axes;
 ht=text(1,1,'示例');
 get(ht)
@@ -143,7 +143,7 @@ plot(x);
 ```
 ### 7.GUI对话框
 - uigetfile文件打开对话框函数
-```m 
+```matlab
 %[FileName,PathName,FilterIndex] = uigetfile(FilterSpec)
 % 规定打开文件类型
 uigetfile('*.m');
@@ -156,13 +156,13 @@ end
 uigetfile('*.m','实例','default.m');
 ```
 - uiputfile文件保存对话框函数
-```m 
+```matlab
 doc uiputfile
 [a,b,c]=uiputfile('.m');
 ```
 ### 8.GUI颜色设置，字体设置对话框
 - uisetcolor 颜色设置对话框
-```m 
+```matlab
 c=uisetcolor
 c=uisetcolor([1 0 0]);
 h=plot([0:10]);
@@ -172,7 +172,7 @@ b=uicontrol('Parent',gcf,'String','颜色设置','Style','pushbutton',...
     'Callback','c=uisetcolor;set(b,''BackgroundColor'',c);');
 ```
 - uisetfont字体设置对话框函数 
-```m
+```matlab
 uisetfont
 doc uisetfont
 S=uisetfont(b);
@@ -183,7 +183,7 @@ b=uicontrol('Parent',gcf,'String','颜色设置','Style','pushbutton',...
 ```
 ### 9.进度条对话框
 - waitbar
-```m 
+```matlab
 h=waitbar(0,'实例');
 get(h)
 % 获得进度条的子对象
@@ -203,34 +203,34 @@ waitbar(0.5,hrand)
 ```
 ### 10.普通对话框、错误对话框、警告对话框
 - dialog普通对话框
-```m 
+```matlab
 h=dialog('name','关于...','Position',[200 200 200 70]);
 uicontrol('Parent',h,'Style','pushbutton','Position',[80 10 50 20],...
     'String','确定','Callback','delete(gcbf)');
 ```
 - errordlg 错误对话框
-```m
+```matlab
 errordlg
 ```
 - warndlg 警告对话框
-```m 
+```matlab
 warndlg
 ```
 
 ### 11. 输入对话框、 目录选择对话框 、 列表选择对话框
 - inputdlg 输入对话框
-```m 
+```matlab
 name=inputdlg('请输入姓名','实例');
 ret=inputdlg({'请输入姓名','请输入性别'},'实例');
 info=inputdlg('请留言','留言',5);
 re=inputdlg({'请输入姓名','请输入性别'},'实例',1,{'hui','男'},'on');
 ```
 - uigetdir 目录选择对话框
-```m 
+```matlab
 uigetdir('C:\','浏览');
 ```
 - listdig 列表选择对话框
-```m 
+```matlab
 [Sel,OK]=listdlg(...
     'ListString',{'A','B','C','D'},...
     'OKString','确定',...
@@ -249,7 +249,7 @@ uigetdir('C:\','浏览');
 
 ### 13.GUI 数据的一致访问
 - 在 Open函数中加入自定义对象
-```m 
+```matlab
 function GUI13_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
@@ -260,13 +260,13 @@ handles.push=h;
 guidata(hObject, handles);
 ```
 - 添加对应push_Callback函数
-```m 
+```matlab
 function push_Callback(hObject,eventdata,handles)
 set(handles.edit1,'String',num2str(handles.rand));
 ```
 ### 14. GUI 示例
 - Open函数中加入自定义对象
-```m
+```matlab
 function GUI14_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 handles.x=-pi:0.01:pi;%添加x值，便于访问
@@ -287,7 +287,7 @@ end
 ### 16.GUI 右键菜单
 - 注意设置UIContexMenu属性选择对象的右键菜单，默认None
 - 底层代码实现右键菜单
-```m 
+```matlab
 figure('Menubar','none');
 h=uicontextmenu;
 uimenu(h,'Label','A');
@@ -300,7 +300,7 @@ matlab 编程支持多线程，支持定时
 - ExecutionMode 属性 
 - Period 定是周期
 - TimerFcn 时间到达后的操作
-```m 
+```matlab
 function GUI17_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 handles.ht=timer;
@@ -311,13 +311,13 @@ start(handles.ht);
 ```
 
 - 定义dispnow函数
-```m 
+```matlab
 function dispnow(hObject,eventdata,handles)
 set(handles.disptime,'String',datestr(now));
 ```
 
 ### 18.界面响应鼠标事件
-```m 
+```matlab
 function GUI18_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 global ButtonDown pos1;
@@ -325,7 +325,7 @@ ButtonDown=[];
 pos1=[];
 guidata(hObject, handles);
 ```
-```m 
+```matlab
 function figure1_WindowButtonDownFcn(hObject, eventdata, handles)
 global ButtonDown pos1;
 if strcmp(get(gcf,'SelectionType'),'normal')
@@ -333,7 +333,7 @@ if strcmp(get(gcf,'SelectionType'),'normal')
     pos1=get(handles.axes1,'CurrentPoint');
 end
 ```
-```m 
+```matlab
 function figure1_WindowButtonMotionFcn(hObject, eventdata, handles)
 global ButtonDown pos1;
 if ButtonDown==1;
@@ -343,7 +343,7 @@ if ButtonDown==1;
 end
 ```
 
-```m 
+```matlab
 function figure1_WindowButtonUpFcn(hObject, eventdata, handles)
 global ButtonDown
 ButtonDown=0;
@@ -351,7 +351,7 @@ ButtonDown=0;
 ### 19 20.界面响应键盘事件、界面修饰
 - KeyPressFcn 回调函数
 - CurrentCharacter
-```m 
+```matlab
     delete(gcf);%关闭窗口
 % 如果按下enter 执行内容
 if double(get(gcf,'CurrentCharacter'))==13
@@ -360,7 +360,7 @@ end
 
 ```
 - CData属性设置背景
-```m 
+```matlab
 % 在Open函数中设置
 A = imread('按钮.jpg');
 set(handles.pushbutton,'CData',A);
